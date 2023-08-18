@@ -6,28 +6,15 @@ import seaborn as sns
 import pandas as pd
 import os
 
-#Establishing connection to py_ball
-HEADERS = {'Connection': 'keep-alive',
-           'Host': 'stats.nba.com',
-           'Origin': 'http://stats.nba.com',
-           'Upgrade-Insecure-Requests': '1',
-           'Referer': 'stats.nba.com',
-           'x-nba-stats-origin': 'stats',
-           'x-nba-stats-token': 'true',
-           'Accept-Language': 'en-US,en;q=0.9',
-           "X-NewRelic-ID": "VQECWF5UChAHUlNTBwgBVw==",
-           'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6)' +\
-                         ' AppleWebKit/537.36 (KHTML, like Gecko)' + \
-                         ' Chrome/81.0.4044.129 Safari/537.36'}
 
-#Read in shot chart
+#Read in shot chart static only for 2022 - 2023 regular season
 shot_chart = pd.read_csv(r'/home/neil/Desktop/shotchart.csv')
 
 class ShotCharts:
     def __init__(self,name,season):
-        self.name = name
-        self.season = season
-        
+        #self.name = name
+        #self.season = season
+        pass
 
         
     def create_court(ax: plt.axes, color="Black") -> plt.axes:

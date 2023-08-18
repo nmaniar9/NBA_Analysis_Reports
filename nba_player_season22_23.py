@@ -9,21 +9,26 @@ from PIL import ImageTk
 from tkinter import *
 import os
 from shot_charts_create import ShotCharts
+from get_playerstats import player_attr
 
 
-name = 'Coby White'
+name = 'Joel Embiid'
 seasons = ['2022-23']
-position = 'Point Gaurd'
-team = 'Chicago Bulls'
-#shot_chart = ShotCharts(name,seasons)
+position = 'Center'
+team = '76ers'
 ShotCharts.volume_chart(name, seasons)
+player_attr.get_headshot('203954')
+player_attr.get_logo('1610612755')
+
+hd = 'resources/headshot.png'
+lg = 'resources/logo.png'
 img = 'resources/shotvolume_plot.png'
 title = 'Player Evaluation: ' + name
 report_name = name +'_22_23season.pdf'
 
 
 
-def create_report(title,position,team,report_name,img):
+def create_report(title,position,team,report_name,img,hd,lg):
     pdf = FPDF(orientation = 'L', unit='mm', format='A4')
     pdf.set_margins(0,0,0)
     pdf.add_page()
@@ -31,14 +36,12 @@ def create_report(title,position,team,report_name,img):
 
     header(pdf,title,position,team)
     volume_chart(pdf,img)
+    headshot(pdf,hd)
+    logo(pdf,lg)
     footer(pdf)
     export(pdf,report_name)
 
-    
-
-
-
-    return(pdf)
+    pass
 
 def header(pdf,title,position,team):
     
@@ -54,6 +57,16 @@ def header(pdf,title,position,team):
 
     return(pdf)
 
+def headshot(pdf,hd):
+    pdf.image(hd,150,0,30,20)
+
+    return(pdf)
+
+def logo(pdf,lg):
+    pdf.image(lg,100,0,30,20)
+
+    return(pdf)
+
 def volume_chart(pdf,img):
 
     #pdf.add_page()
@@ -61,6 +74,7 @@ def volume_chart(pdf,img):
     pdf.image(img,180, 110,75,80)
 
     return(pdf)
+
     
 def footer(pdf):
     #Position at 1.5cm from the bottom
@@ -83,7 +97,7 @@ def export(pdf,filename):
         
 
 
-create_report(title,position,team,report_name,img)
+create_report(title,position,team,report_name,img,hd,lg)
         
 
 
