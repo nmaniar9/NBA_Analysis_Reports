@@ -62,10 +62,10 @@ class player_attr:
         #plt.xlabel('Season',fontsize=30)
         plt.ylabel('Games Played',fontsize=30)
         plt.grid(True)
-        plt.annotate(f'Max Games Played: {max(y)}', xy=(x[y.idxmax()], max(y)), xytext=(20, -20),
-             textcoords='offset points', arrowprops=dict(arrowstyle='->'))
-        plt.annotate(f'Min Games Played: {min(y)}', xy=(x[y.idxmin()], min(y)), xytext=(20, 10),
-             textcoords='offset points', arrowprops=dict(arrowstyle='->'))
+        plt.annotate(f'Max: {max(y)}', xy=(x[y.idxmax()], max(y)), xytext=(20, -20),
+             textcoords='offset points', arrowprops=dict(arrowstyle='->'),fontsize = 20)
+        plt.annotate(f'Min: {min(y)}', xy=(x[y.idxmin()], min(y)), xytext=(20, 10),
+             textcoords='offset points', arrowprops=dict(arrowstyle='->'),fontsize = 20)
         plt.savefig('/home/neil/NBA_Analysis_Report/NBA_Analysis_Reports/resources/games_played.png',transparent=True)
         plt.close()
         pass
@@ -76,10 +76,10 @@ class player_attr:
         #plt.xlabel('Season',fontsize=27.5)
         plt.ylabel('Points',fontsize=25)
         plt.grid(True)
-        plt.annotate(f'Max Points: {max(y)}', xy=(x[y.idxmax()], max(y)), xytext=(20, -20),
-             textcoords='offset points', arrowprops=dict(arrowstyle='->'))
-        plt.annotate(f'Min Points: {min(y)}', xy=(x[y.idxmin()], min(y)), xytext=(20, 10),
-             textcoords='offset points', arrowprops=dict(arrowstyle='->'))
+        plt.annotate(f'Max: {max(y)}', xy=(x[y.idxmax()], max(y)), xytext=(20, -20),
+             textcoords='offset points', arrowprops=dict(arrowstyle='->'),fontsize = 20)
+        plt.annotate(f'Min: {min(y)}', xy=(x[y.idxmin()], min(y)), xytext=(20, 10),
+             textcoords='offset points', arrowprops=dict(arrowstyle='->'),fontsize = 20)
         plt.savefig('/home/neil/NBA_Analysis_Report/NBA_Analysis_Reports/resources/Points.png',transparent=True)
         plt.close()
     
@@ -93,14 +93,14 @@ class player_attr:
         plt.ylabel('Rebounds',fontsize=30)
         plt.legend()
         plt.grid(True)
-        plt.annotate(f'Max Offensive Rebounds: {max(y)}', xy=(x[y.idxmax()], max(y)), xytext=(20, -20),
-             textcoords='offset points', arrowprops=dict(arrowstyle='->'))
-        plt.annotate(f'Min Offensive Rebounds: {min(y)}', xy=(x[y.idxmin()], min(y)), xytext=(20, 10),
-             textcoords='offset points', arrowprops=dict(arrowstyle='->'))
-        plt.annotate(f'Max Densive Rebounds: {max(z)}', xy=(x[z.idxmax()], max(z)), xytext=(20, -20),
-             textcoords='offset points', arrowprops=dict(arrowstyle='->'))
-        plt.annotate(f'Min Densive Rebounds: {min(z)}', xy=(x[z.idxmin()], min(z)), xytext=(20, 10),
-             textcoords='offset points', arrowprops=dict(arrowstyle='->'))
+        plt.annotate(f'Max: {max(y)}', xy=(x[y.idxmax()], max(y)), xytext=(20, -20),
+             textcoords='offset points', arrowprops=dict(arrowstyle='->'),fontsize = 20)
+        plt.annotate(f'Min: {min(y)}', xy=(x[y.idxmin()], min(y)), xytext=(20, 10),
+             textcoords='offset points', arrowprops=dict(arrowstyle='->'),fontsize = 20)
+        plt.annotate(f'Max: {max(z)}', xy=(x[z.idxmax()], max(z)), xytext=(20, -20),
+             textcoords='offset points', arrowprops=dict(arrowstyle='->'),fontsize = 20)
+        plt.annotate(f'Min: {min(z)}', xy=(x[z.idxmin()], min(z)), xytext=(20, 10),
+             textcoords='offset points', arrowprops=dict(arrowstyle='->'),fontsize=20)
         plt.savefig('/home/neil/NBA_Analysis_Report/NBA_Analysis_Reports/resources/rebounds.png',transparent=True)
         plt.close()
 
@@ -112,10 +112,10 @@ class player_attr:
         #plt.xlabel('Season',fontsize=30)
         plt.ylabel('Assist',fontsize=30)
         plt.grid(True)
-        plt.annotate(f'Max Assits: {max(y)}', xy=(x[y.idxmax()], max(y)), xytext=(20, -20),
-             textcoords='offset points', arrowprops=dict(arrowstyle='->'))
-        plt.annotate(f'Min Assist: {min(y)}', xy=(x[y.idxmin()], min(y)), xytext=(20, 10),
-             textcoords='offset points', arrowprops=dict(arrowstyle='->'))
+        plt.annotate(f'Max: {max(y)}', xy=(x[y.idxmax()], max(y)), xytext=(20, -20),
+             textcoords='offset points', arrowprops=dict(arrowstyle='->'),fontsize = 20)
+        plt.annotate(f'Min: {min(y)}', xy=(x[y.idxmin()], min(y)), xytext=(20, 10),
+             textcoords='offset points', arrowprops=dict(arrowstyle='->'),fontsize = 20)
 
 
         plt.savefig('/home/neil/NBA_Analysis_Report/NBA_Analysis_Reports/resources/assists.png',transparent=True)
