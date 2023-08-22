@@ -2,6 +2,7 @@
 import numpy as np
 import seaborn as sns 
 import pandas as pd
+import matplotlib.pyplot as plt
 
 from py_ball import player,image
 
@@ -44,16 +45,95 @@ class player_attr:
         logo.image.save('/home/neil/NBA_Analysis_Report/NBA_Analysis_Reports/resources/logo.png')
 
 
+    def get_pid(name):
+        pass
+
+    def get_team(pid):
+        pass
+
+    def get_position(pid):
+        pass
+
+    def create_gamesplayed(stats_df):
+        x = stats_df['SEASON_ID']
+        y = stats_df['GP']
+        plt.plot(x, y, marker='o')  # 'o' adds markers to data points
+        #plt.title()
+        plt.xlabel('Season')
+        plt.ylabel('Games Played')
+        plt.grid(True)
+        plt.annotate(f'Max Games Played: {max(y)}', xy=(x[y.idxmax()], max(y)), xytext=(20, -20),
+             textcoords='offset points', arrowprops=dict(arrowstyle='->'))
+        plt.annotate(f'Min Games Played: {min(y)}', xy=(x[y.idxmin()], min(y)), xytext=(20, 10),
+             textcoords='offset points', arrowprops=dict(arrowstyle='->'))
+        plt.savefig('/home/neil/NBA_Analysis_Report/NBA_Analysis_Reports/resources/games_played.png')
+        plt.close()
+        pass
+    def create_pts(stats_df):
+        x=stats_df['SEASON_ID']
+        y=stats_df['PTS']
+        plt.plot(x, y, marker='o')
+        plt.xlabel('Season')
+        plt.ylabel('Points')
+        plt.grid(True)
+        plt.annotate(f'Max Points: {max(y)}', xy=(x[y.idxmax()], max(y)), xytext=(20, -20),
+             textcoords='offset points', arrowprops=dict(arrowstyle='->'))
+        plt.annotate(f'Min Points: {min(y)}', xy=(x[y.idxmin()], min(y)), xytext=(20, 10),
+             textcoords='offset points', arrowprops=dict(arrowstyle='->'))
+        plt.savefig('/home/neil/NBA_Analysis_Report/NBA_Analysis_Reports/resources/Points.png')
+        plt.close()
+    
+    def create_reb(stats_df):
+        x=stats_df['SEASON_ID']
+        y=stats_df['OREB']
+        z=stats_df['DREB']
+        plt.plot(x, y, marker='o',label='Offensive')
+        plt.plot(x, z, marker='s', label='Defensive')
+        plt.xlabel('Season')
+        plt.ylabel('Rebounds')
+        plt.legend()
+        plt.grid(True)
+        plt.annotate(f'Max Offensive Rebounds: {max(y)}', xy=(x[y.idxmax()], max(y)), xytext=(20, -20),
+             textcoords='offset points', arrowprops=dict(arrowstyle='->'))
+        plt.annotate(f'Min Offensive Rebounds: {min(y)}', xy=(x[y.idxmin()], min(y)), xytext=(20, 10),
+             textcoords='offset points', arrowprops=dict(arrowstyle='->'))
+        plt.annotate(f'Max Densive Rebounds: {max(z)}', xy=(x[z.idxmax()], max(z)), xytext=(20, -20),
+             textcoords='offset points', arrowprops=dict(arrowstyle='->'))
+        plt.annotate(f'Min Densive Rebounds: {min(z)}', xy=(x[z.idxmin()], min(z)), xytext=(20, 10),
+             textcoords='offset points', arrowprops=dict(arrowstyle='->'))
+        plt.savefig('/home/neil/NBA_Analysis_Report/NBA_Analysis_Reports/resources/rebounds.png')
+        plt.close()
+
+    def create_ast(stats_df):
+        x=stats_df['SEASON_ID']
+        y=stats_df['AST']
+        plt.plot(x, y, marker='o')
+        
+        plt.xlabel('Season')
+        plt.ylabel('Assist')
+        plt.grid(True)
+        plt.annotate(f'Max Assits: {max(y)}', xy=(x[y.idxmax()], max(y)), xytext=(20, -20),
+             textcoords='offset points', arrowprops=dict(arrowstyle='->'))
+        plt.annotate(f'Min Assist: {min(y)}', xy=(x[y.idxmin()], min(y)), xytext=(20, 10),
+             textcoords='offset points', arrowprops=dict(arrowstyle='->'))
+
+
+        plt.savefig('/home/neil/NBA_Analysis_Report/NBA_Analysis_Reports/resources/assists.png')
+        plt.close()
+
+
+
+
+
+
+
+
 
     def get_stats(pid):
-        
-
         stats = player.Player(headers=HEADERS,
                            endpoint='playercareerstats',
                            player_id=pid,
                            per_mode='Totals',
-                           
-
                            league_id='00'
                            )
         stats = pd.DataFrame(stats.data['SeasonTotalsRegularSeason'])

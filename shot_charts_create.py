@@ -97,7 +97,7 @@ class ShotCharts:
         plt.savefig('/home/neil/NBA_Analysis_Report/NBA_Analysis_Reports/resources/shotvolume_plot.png')
 
         
-               
+        plt.close()
                 
-        return fig
+        pass
 
