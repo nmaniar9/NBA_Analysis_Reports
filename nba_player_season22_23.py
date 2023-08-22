@@ -19,11 +19,11 @@ team = '76ers'
 ShotCharts.volume_chart(name, seasons)
 player_attr.get_headshot('203954')
 player_attr.get_logo('1610612755')
-
+stats_df = player_attr.get_stats('203954')
 hd = 'resources/headshot.png'
 lg = 'resources/logo.png'
 img = 'resources/shotvolume_plot.png'
-title = 'Player Evaluation: ' + name
+title = '            Player Evaluation: ' + name
 report_name = name +'_22_23season.pdf'
 
 
@@ -44,34 +44,45 @@ def create_report(title,position,team,report_name,img,hd,lg):
     pass
 
 def header(pdf,title,position,team):
-    
+
+    pdf.set_y(10)
+    pdf.set_x(10)
+
     pdf.set_font('Arial','B',15)
     pdf.set_fill_color(168, 66, 50)
+    
+    #pdf.cell(287,10,txt=title,border=0,ln=0,align='',fill = True)
+    pdf.cell(277,20,title + '       ' + position + ' | ' + team,border=0,ln=0,align='',fill = True)
         
-    pdf.cell(400,20,txt=title,border=0,ln=0,align='',fill = True)
-        
-    pdf.set_y(10)
+    #pdf.set_y(10)
         #self.set_fill_color(19, 144, 161)
-    pdf.set_font('Arial','',10)
-    pdf.cell(400,10,txt=position + ' | ' + team,border=0,ln=0,align='',fill = False)
+    #pdf.set_font('Arial','',10)
+    
+
+    #pdf.image('resources/hexagon_blue.png',0,0,30,30)
 
     return(pdf)
 
 def headshot(pdf,hd):
-    pdf.image(hd,150,0,30,20)
+    pdf.image(hd,2,5,32,26)
 
     return(pdf)
 
 def logo(pdf,lg):
-    pdf.image(lg,100,0,30,20)
+    pdf.image(lg,267,3,32,32)
 
     return(pdf)
 
 def volume_chart(pdf,img):
 
     #pdf.add_page()
-  
-    pdf.image(img,180, 110,75,80)
+    pdf.set_y(73.9)
+    pdf.set_x(149.89)
+
+    pdf.set_font('Arial','B',15)
+    pdf.cell(76.2,15,"Shot Selection Volume",align='',fill = False)
+     
+    pdf.image(img,149.89, 88.9,88,88.9)
 
     return(pdf)
 

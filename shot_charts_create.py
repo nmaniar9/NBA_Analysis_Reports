@@ -63,8 +63,8 @@ class ShotCharts:
         # Annotate player name and season
         #plt.text(-225, 430, f"{name}", fontsize=21, color='Black',
         #                        fontname='Corbel')
-        plt.text(-225, 430, "Shot Selection Volume", fontsize=16, color='Black',
-                                fontname='Corbel')
+        #plt.text(-225, 430, "Shot Selection Volume", fontsize=16, color='Black',
+         #                       fontname='Corbel')
         season = f"{season[0][:4]}-{season[-1][-2:]}"
         plt.text(-250, -20, season, fontsize=8, color='Black')
         plt.text(110, -20, '@neilmaniar3', fontsize=8, color='Black')
@@ -84,12 +84,12 @@ class ShotCharts:
 
         # add legend
                 
-        cax = fig.add_axes([0.85, 0.65, 0.05, 0.3]) 
-        cbar = fig.colorbar(hexbin,cax=cax)
+        cax = fig.add_axes([0.2, 0.80, 0.6, 0.10]) 
+        cbar = fig.colorbar(hexbin,cax=cax,orientation='horizontal')
                
         cbar.set_ticks([mn,mx])
         cbar.set_ticklabels(['Low','High'])
-        cbar.ax.tick_params(rotation=90)
+        cbar.ax.tick_params()
 
         
 

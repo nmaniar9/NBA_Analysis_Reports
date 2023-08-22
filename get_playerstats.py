@@ -45,7 +45,19 @@ class player_attr:
 
 
 
-    def get_stats(self):
-        pass
+    def get_stats(pid):
+        
+
+        stats = player.Player(headers=HEADERS,
+                           endpoint='playercareerstats',
+                           player_id=pid,
+                           per_mode='Totals',
+                           
+
+                           league_id='00'
+                           )
+        stats = pd.DataFrame(stats.data['SeasonTotalsRegularSeason'])
+
+        return(stats)
     
     
