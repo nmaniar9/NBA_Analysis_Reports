@@ -27,7 +27,7 @@ player_attr.create_reb(stats_df)
 hd = 'resources/headshot.png'
 lg = 'resources/logo.png'
 img = 'resources/shotvolume_plot.png'
-title = '            Player Evaluation: ' + name
+title = ' Player Evaluation: ' + name
 report_name = name +'_22_23season.pdf'
 
 
@@ -43,6 +43,7 @@ def create_report(title,position,team,report_name,img,hd,lg,stats_df):
     volume_chart(pdf,stats_df)
     headshot(pdf,hd)
     logo(pdf,lg)
+    season_charts(pdf)
     footer(pdf)
     export(pdf,report_name)
 
@@ -51,13 +52,13 @@ def create_report(title,position,team,report_name,img,hd,lg,stats_df):
 def header(pdf,title,position,team):
 
     pdf.set_y(10)
-    pdf.set_x(10)
+    pdf.set_x(35)
 
-    pdf.set_font('Arial','B',15)
+    pdf.set_font('Arial','B',25)
     pdf.set_fill_color(168, 66, 50)
     
     #pdf.cell(287,10,txt=title,border=0,ln=0,align='',fill = True)
-    pdf.cell(277,20,title + '       ' + position + ' | ' + team,border=0,ln=0,align='',fill = True)
+    pdf.cell(237,20,title + '              ' + position + ' | ' + team,border=0,ln=0,align='',fill = False)
         
     #pdf.set_y(10)
         #self.set_fill_color(19, 144, 161)
@@ -69,7 +70,7 @@ def header(pdf,title,position,team):
     return(pdf)
 
 def headshot(pdf,hd):
-    pdf.image(hd,2,5,32,26)
+    pdf.image(hd,2,5,39,35)
 
     return(pdf)
 
@@ -149,7 +150,21 @@ def volume_chart(pdf,stats_df):
     return(pdf)
 
 def season_charts(pdf):
+
+    pdf.image('resources/Points.png',21,145,50,50)
+    pdf.image('resources/rebounds.png',80,145,50,50)
+
+    pdf.image('resources/games_played.png',21,90.9,50,50)
     
+    pdf.image('resources/assists.png',80,90.9,50,50)
+
+    pdf.set_y(80.9)
+    pdf.set_x(20.89)
+    pdf.set_font('Arial','B',15)
+    pdf.cell(76.2,15,"Season Trends",align='',fill = False) 
+
+    
+
 
     
 def footer(pdf):

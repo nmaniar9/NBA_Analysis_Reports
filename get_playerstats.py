@@ -59,28 +59,28 @@ class player_attr:
         y = stats_df['GP']
         plt.plot(x, y, marker='o')  # 'o' adds markers to data points
         #plt.title()
-        plt.xlabel('Season')
-        plt.ylabel('Games Played')
+        #plt.xlabel('Season',fontsize=30)
+        plt.ylabel('Games Played',fontsize=30)
         plt.grid(True)
         plt.annotate(f'Max Games Played: {max(y)}', xy=(x[y.idxmax()], max(y)), xytext=(20, -20),
              textcoords='offset points', arrowprops=dict(arrowstyle='->'))
         plt.annotate(f'Min Games Played: {min(y)}', xy=(x[y.idxmin()], min(y)), xytext=(20, 10),
              textcoords='offset points', arrowprops=dict(arrowstyle='->'))
-        plt.savefig('/home/neil/NBA_Analysis_Report/NBA_Analysis_Reports/resources/games_played.png')
+        plt.savefig('/home/neil/NBA_Analysis_Report/NBA_Analysis_Reports/resources/games_played.png',transparent=True)
         plt.close()
         pass
     def create_pts(stats_df):
         x=stats_df['SEASON_ID']
         y=stats_df['PTS']
         plt.plot(x, y, marker='o')
-        plt.xlabel('Season')
-        plt.ylabel('Points')
+        #plt.xlabel('Season',fontsize=27.5)
+        plt.ylabel('Points',fontsize=25)
         plt.grid(True)
         plt.annotate(f'Max Points: {max(y)}', xy=(x[y.idxmax()], max(y)), xytext=(20, -20),
              textcoords='offset points', arrowprops=dict(arrowstyle='->'))
         plt.annotate(f'Min Points: {min(y)}', xy=(x[y.idxmin()], min(y)), xytext=(20, 10),
              textcoords='offset points', arrowprops=dict(arrowstyle='->'))
-        plt.savefig('/home/neil/NBA_Analysis_Report/NBA_Analysis_Reports/resources/Points.png')
+        plt.savefig('/home/neil/NBA_Analysis_Report/NBA_Analysis_Reports/resources/Points.png',transparent=True)
         plt.close()
     
     def create_reb(stats_df):
@@ -89,8 +89,8 @@ class player_attr:
         z=stats_df['DREB']
         plt.plot(x, y, marker='o',label='Offensive')
         plt.plot(x, z, marker='s', label='Defensive')
-        plt.xlabel('Season')
-        plt.ylabel('Rebounds')
+        #plt.xlabel('Season',fontsize=30)
+        plt.ylabel('Rebounds',fontsize=30)
         plt.legend()
         plt.grid(True)
         plt.annotate(f'Max Offensive Rebounds: {max(y)}', xy=(x[y.idxmax()], max(y)), xytext=(20, -20),
@@ -101,7 +101,7 @@ class player_attr:
              textcoords='offset points', arrowprops=dict(arrowstyle='->'))
         plt.annotate(f'Min Densive Rebounds: {min(z)}', xy=(x[z.idxmin()], min(z)), xytext=(20, 10),
              textcoords='offset points', arrowprops=dict(arrowstyle='->'))
-        plt.savefig('/home/neil/NBA_Analysis_Report/NBA_Analysis_Reports/resources/rebounds.png')
+        plt.savefig('/home/neil/NBA_Analysis_Report/NBA_Analysis_Reports/resources/rebounds.png',transparent=True)
         plt.close()
 
     def create_ast(stats_df):
@@ -109,8 +109,8 @@ class player_attr:
         y=stats_df['AST']
         plt.plot(x, y, marker='o')
         
-        plt.xlabel('Season')
-        plt.ylabel('Assist')
+        #plt.xlabel('Season',fontsize=30)
+        plt.ylabel('Assist',fontsize=30)
         plt.grid(True)
         plt.annotate(f'Max Assits: {max(y)}', xy=(x[y.idxmax()], max(y)), xytext=(20, -20),
              textcoords='offset points', arrowprops=dict(arrowstyle='->'))
@@ -118,7 +118,7 @@ class player_attr:
              textcoords='offset points', arrowprops=dict(arrowstyle='->'))
 
 
-        plt.savefig('/home/neil/NBA_Analysis_Report/NBA_Analysis_Reports/resources/assists.png')
+        plt.savefig('/home/neil/NBA_Analysis_Report/NBA_Analysis_Reports/resources/assists.png',transparent=True)
         plt.close()
 
 
