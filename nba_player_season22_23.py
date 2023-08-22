@@ -76,13 +76,31 @@ def logo(pdf,lg):
 def volume_chart(pdf,img):
 
     #pdf.add_page()
-    pdf.set_y(73.9)
+    pdf.set_y(80.9)
     pdf.set_x(149.89)
-
     pdf.set_font('Arial','B',15)
-    pdf.cell(76.2,15,"Shot Selection Volume",align='',fill = False)
-     
-    pdf.image(img,149.89, 88.9,88,88.9)
+    pdf.cell(76.2,15,"Shot Selection Volume",align='',fill = False) 
+    pdf.image(img,149.89, 94.9,88,96.5)
+
+
+    pdf.set_y(80.9)
+    pdf.set_x(252)
+    pdf.set_font('Arial','B',15)
+    pdf.cell(76.2,15,"    FG %",align='',fill = False)
+    pdf.image('resources/Hexagon.png',252,94.9,25.4,25.4)
+
+    pdf.set_y(118.9)
+    pdf.set_x(252)
+    pdf.set_font('Arial','B',15)
+    pdf.cell(76.2,15,"  3PT FG %",align='',fill = False)
+    pdf.image('resources/Hexagon.png',252,130.9,25.4,25.4)
+
+    pdf.set_y(154.9)
+    pdf.set_x(252)
+    pdf.set_font('Arial','B',15)
+    pdf.cell(76.2,15,"     FT %",align='',fill = False)
+    pdf.image('resources/Hexagon.png',252,166.9,25.4,25.4)
+
 
     return(pdf)
 

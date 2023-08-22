@@ -50,7 +50,7 @@ class ShotCharts:
                         RA=True,
                         extent=(-250, 250, 422.5, -47.5),
                         gridsize=25, cmap="Blues"):
-        fig = plt.figure(figsize=(3.6, 3.6), facecolor='gainsboro', edgecolor='gainsboro', dpi=100)
+        fig = plt.figure(figsize=(3.6, 3.6), facecolor='gainsboro', edgecolor='white', dpi=100)
         ax = fig.add_axes([0, 0, 1, 1], facecolor='gainsboro')
 
         player_df = shot_chart[shot_chart['PLAYER_NAME'] == name]
