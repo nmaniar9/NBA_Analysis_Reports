@@ -33,6 +33,8 @@ report_name = name +'_22_23season.pdf'
 
 
 
+
+
 def create_report(title,position,team,report_name,img,hd,lg,stats_df):
     pdf = FPDF(orientation = 'L', unit='mm', format='A4')
     pdf.set_margins(0,0,0)
@@ -44,6 +46,7 @@ def create_report(title,position,team,report_name,img,hd,lg,stats_df):
     headshot(pdf,hd)
     logo(pdf,lg)
     season_charts(pdf)
+    season_overview(pdf,stats_df)
     footer(pdf)
     export(pdf,report_name)
 
@@ -69,6 +72,7 @@ def header(pdf,title,position,team):
 
     return(pdf)
 
+
 def headshot(pdf,hd):
     pdf.image(hd,2,5,39,35)
 
@@ -78,6 +82,36 @@ def logo(pdf,lg):
     pdf.image(lg,267,3,32,32)
 
     return(pdf)
+def season_overview(pdf,stats_df):
+    filter = stats_df[stats_df['SEASON_ID']=='2022-23']
+
+    season = filter.iloc[0]['SEASON_ID']
+    gp = filter.iloc[0]['GP']
+    mpg = round(filter.iloc[0]['MIN']/gp,2)
+    ppg = round(filter.iloc[0]['PTS']/gp,2)
+    rpg = round(filter.iloc[0]['REB']/gp,2)
+    ast = round(filter.iloc[0]['AST']/gp,2)
+    stl = round(filter.iloc[0]['STL']/gp,2)
+    blk = round(filter.iloc[0]['BLK']/gp,2)
+    tov = round(filter.iloc[0]['TOV']/gp,2)
+
+    
+    pdf.set_y(40)
+    pdf.set_x(21)
+    pdf.set_font('Arial','B',15)
+    pdf.cell(76.2,15,"Season Overview",align='',fill = False)
+
+    pdf.image('resources/season_template.png',21,45,160,40)
+
+    pdf.set_y(62)
+    pdf.set_x(22)
+    pdf.set_font('Arial','B',10)
+    pdf.cell(65,10,str(season)+'        '+str(gp)+'            '+str(mpg)+'         '+str(ppg)+'          '+str(rpg)+'          '+str(ast)+'            '+str(stl)+'             '+str(blk)+'             '+str(tov),align='',fill = False)
+
+
+
+
+    
 
 def volume_chart(pdf,stats_df):
 
@@ -98,8 +132,8 @@ def volume_chart(pdf,stats_df):
     pdf.image('resources/Hexagon.png',252,94.9,25.4,25.4)
    
     fg_pct = round(filter.iloc[0]['FG_PCT'] * 100,2)
-    fg_at = filter.iloc[0]['FTA']
-    fg_made = filter.iloc[0]['FTM']
+    fg_at = filter.iloc[0]['FGA']
+    fg_made = filter.iloc[0]['FGM']
     pdf.set_y(84.9)
     pdf.set_x(255)
     pdf.set_font('Arial','B',20)
