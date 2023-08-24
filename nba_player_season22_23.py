@@ -24,6 +24,7 @@ player_attr.create_gamesplayed(stats_df)
 player_attr.create_pts(stats_df)
 player_attr.create_ast(stats_df)
 player_attr.create_reb(stats_df)
+rankings = player_attr.rankings('203954')
 hd = 'resources/headshot.png'
 lg = 'resources/logo.png'
 img = 'resources/shotvolume_plot.png'
@@ -31,7 +32,8 @@ title = ' Player Evaluation: ' + name
 report_name = name +'_22_23season.pdf'
 
 
-
+print(rankings.columns)
+print(rankings.head())
 
 
 

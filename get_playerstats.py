@@ -104,6 +104,21 @@ class player_attr:
         plt.savefig('/home/neil/NBA_Analysis_Report/NBA_Analysis_Reports/resources/rebounds.png',transparent=True)
         plt.close()
 
+    def rankings(pid):
+        stats = player.Player(headers=HEADERS,
+                           endpoint='playercareerstats',
+                           player_id=pid,
+                           per_mode='Totals',
+                           league_id='00'
+                           )
+        stats = pd.DataFrame(stats.data['SeasonRankingsRegularSeason'])
+
+
+        return(stats)
+
+
+
+
     def create_ast(stats_df):
         x=stats_df['SEASON_ID']
         y=stats_df['AST']
@@ -120,8 +135,6 @@ class player_attr:
 
         plt.savefig('/home/neil/NBA_Analysis_Report/NBA_Analysis_Reports/resources/assists.png',transparent=True)
         plt.close()
-
-
 
 
 
