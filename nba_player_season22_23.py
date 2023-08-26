@@ -20,11 +20,9 @@ ShotCharts.volume_chart(name, seasons)
 player_attr.get_headshot('203954')
 player_attr.get_logo('1610612755')
 stats_df = player_attr.get_stats('203954')
-player_attr.create_gamesplayed(stats_df)
-player_attr.create_pts(stats_df)
-player_attr.create_ast(stats_df)
-player_attr.create_reb(stats_df)
-rankings = player_attr.rankings('203954')
+
+player_attr.all_plots(stats_df)
+
 hd = 'resources/headshot.png'
 lg = 'resources/logo.png'
 img = 'resources/shotvolume_plot.png'
@@ -32,8 +30,7 @@ title = ' Player Evaluation: ' + name
 report_name = name +'_22_23season.pdf'
 
 
-print(rankings.columns)
-print(rankings.head())
+
 
 
 
@@ -61,16 +58,9 @@ def header(pdf,title,position,team):
 
     pdf.set_font('Arial','B',25)
     pdf.set_fill_color(168, 66, 50)
-    
-    #pdf.cell(287,10,txt=title,border=0,ln=0,align='',fill = True)
-    pdf.cell(237,20,title + '              ' + position + ' | ' + team,border=0,ln=0,align='',fill = False)
-        
-    #pdf.set_y(10)
-        #self.set_fill_color(19, 144, 161)
-    #pdf.set_font('Arial','',10)
-    
 
-    #pdf.image('resources/hexagon_blue.png',0,0,30,30)
+    pdf.cell(237,20,title + '              ' + position + ' | ' + team,border=0,ln=0,align='',fill = False)
+
 
     return(pdf)
 
@@ -99,7 +89,7 @@ def season_overview(pdf,stats_df):
 
     
     pdf.set_y(40)
-    pdf.set_x(21)
+    pdf.set_x(19)
     pdf.set_font('Arial','B',15)
     pdf.cell(76.2,15,"Season Overview",align='',fill = False)
 
@@ -120,65 +110,65 @@ def volume_chart(pdf,stats_df):
     filter = stats_df[stats_df['SEASON_ID']=='2022-23']
 
     
-    pdf.set_y(80.9)
-    pdf.set_x(149.89)
+    pdf.set_y(72)
+    pdf.set_x(146)
     pdf.set_font('Arial','B',15)
     pdf.cell(76.2,15,"Shot Selection Volume",align='',fill = False) 
-    pdf.image('resources/shotvolume_plot.png',149.89, 94.9,88,96.5)
+    pdf.image('resources/shotvolume_plot.png',143, 87.5,100,112)
 
 
     pdf.set_y(80.9)
-    pdf.set_x(252)
+    pdf.set_x(254)
     pdf.set_font('Arial','B',15)
     pdf.cell(76.2,15,"    FG%",align='',fill = False)
-    pdf.image('resources/Hexagon.png',252,94.9,25.4,25.4)
+    pdf.image('resources/Hexagon.png',254,94.9,25.4,25.4)
    
     fg_pct = round(filter.iloc[0]['FG_PCT'] * 100,2)
     fg_at = filter.iloc[0]['FGA']
     fg_made = filter.iloc[0]['FGM']
     pdf.set_y(84.9)
-    pdf.set_x(255)
+    pdf.set_x(257)
     pdf.set_font('Arial','B',20)
     pdf.cell(76.2,40,str(fg_pct)+'%',align='',fill = False)
     pdf.set_y(91.9)
-    pdf.set_x(258)
+    pdf.set_x(260)
     pdf.set_font('Arial','B',10)
     pdf.cell(76.2,40,str(fg_made) + "/"+str(fg_at),align='',fill = False)
 
 
     pdf.set_y(118.9)
-    pdf.set_x(252)
+    pdf.set_x(254)
     pdf.set_font('Arial','B',15)
     pdf.cell(76.2,15," 3PT FG %",align='',fill = False)
-    pdf.image('resources/Hexagon.png',252,130.9,25.4,25.4)
+    pdf.image('resources/Hexagon.png',254,130.9,25.4,25.4)
 
     fg_3pct = round(filter.iloc[0]['FG3_PCT'] * 100,2)
     fg_3at = filter.iloc[0]['FG3A']
     fg_3made = filter.iloc[0]['FG3M']
     pdf.set_y(121.9)
-    pdf.set_x(255)
+    pdf.set_x(257)
     pdf.set_font('Arial','B',20)
     pdf.cell(76.2,40,str(fg_3pct)+'%',align='',fill = False)
     pdf.set_y(128.9)
-    pdf.set_x(258)
+    pdf.set_x(260)
     pdf.set_font('Arial','B',10)
     pdf.cell(76.2,40,str(fg_3made) + "/"+str(fg_3at),align='',fill = False)
 
 
     pdf.set_y(154.9)
-    pdf.set_x(252)
+    pdf.set_x(254)
     pdf.set_font('Arial','B',15)
     pdf.cell(76.2,15,"     FT %",align='',fill = False)
-    pdf.image('resources/Hexagon.png',252,166.9,25.4,25.4)
+    pdf.image('resources/Hexagon.png',254,166.9,25.4,25.4)
     ft_pct = round(filter.iloc[0]['FT_PCT'] * 100,2)
     ft_at = filter.iloc[0]['FTA']
     ft_made = filter.iloc[0]['FTM']
     pdf.set_y(157.9)
-    pdf.set_x(255)
+    pdf.set_x(257)
     pdf.set_font('Arial','B',20)
     pdf.cell(76.2,40,str(ft_pct)+'%',align='',fill = False)
     pdf.set_y(164.9)
-    pdf.set_x(258)
+    pdf.set_x(260)
     pdf.set_font('Arial','B',10)
     pdf.cell(76.2,40,str(ft_made) + "/"+str(ft_at),align='',fill = False)
 
@@ -187,17 +177,13 @@ def volume_chart(pdf,stats_df):
 
 def season_charts(pdf):
 
-    pdf.image('resources/Points.png',21,145,50,50)
-    pdf.image('resources/rebounds.png',80,145,50,50)
+    pdf.image('resources/all_plots.png',19,82.5,120,120)
 
-    pdf.image('resources/games_played.png',21,90.9,50,50)
-    
-    pdf.image('resources/assists.png',80,90.9,50,50)
 
-    pdf.set_y(80.9)
-    pdf.set_x(20.89)
+    pdf.set_y(72)
+    pdf.set_x(19)
     pdf.set_font('Arial','B',15)
-    pdf.cell(76.2,15,"Season Trends",align='',fill = False) 
+    pdf.cell(76.5,15,"Season Trends",align='',fill = False) 
 
     
 

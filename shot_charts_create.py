@@ -43,6 +43,8 @@ class ShotCharts:
         # Set axis limits
         ax.set_xlim(-250, 250)
         ax.set_ylim(0, 470)
+        
+        
         return ax
 
         
@@ -50,8 +52,16 @@ class ShotCharts:
                         RA=True,
                         extent=(-250, 250, 422.5, -47.5),
                         gridsize=25, cmap="Blues"):
-        fig = plt.figure(figsize=(3.6, 3.6), facecolor='gainsboro', edgecolor='white', dpi=100)
+        fig = plt.figure(figsize=(3.6, 3.6), facecolor='gainsboro', edgecolor='black', dpi=100)
+        fig.patch.set_edgecolor('black')
         ax = fig.add_axes([0, 0, 1, 1], facecolor='gainsboro')
+
+        ax.spines['top'].set_visible(False)
+        ax.spines['bottom'].set_visible(False)
+        ax.spines['left'].set_visible(False)
+        ax.spines['right'].set_visible(False)
+
+
 
         player_df = shot_chart[shot_chart['PLAYER_NAME'] == name]
 
@@ -66,8 +76,8 @@ class ShotCharts:
         #plt.text(-225, 430, "Shot Selection Volume", fontsize=16, color='Black',
          #                       fontname='Corbel')
         season = f"{season[0][:4]}-{season[-1][-2:]}"
-        plt.text(-250, -20, season, fontsize=8, color='Black')
-        plt.text(110, -20, '@neilmaniar3', fontsize=8, color='Black')
+        plt.text(-250, -20, season, fontsize=8, color='black')
+        plt.text(110, -20, '@neilmaniar3', fontsize=8, color='black')
 
         hexbin = ax.hexbin(x, y, cmap=cmap,
                         bins="log", gridsize=25, mincnt=2, extent=(-250, 250, 422.5, -47.5))
@@ -92,7 +102,6 @@ class ShotCharts:
         cbar.ax.tick_params()
 
         
-
         
         plt.savefig('/home/neil/NBA_Analysis_Report/NBA_Analysis_Reports/resources/shotvolume_plot.png')
 
