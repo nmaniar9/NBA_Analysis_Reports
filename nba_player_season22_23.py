@@ -66,7 +66,7 @@ def header(pdf,title,position,team):
 
 
 def headshot(pdf,hd):
-    pdf.image(hd,2,5,39,35)
+    pdf.image(hd,2,5,43,35)
 
     return(pdf)
 
@@ -111,10 +111,10 @@ def volume_chart(pdf,stats_df):
 
     
     pdf.set_y(72)
-    pdf.set_x(146)
+    pdf.set_x(145)
     pdf.set_font('Arial','B',15)
     pdf.cell(76.2,15,"Shot Selection Volume",align='',fill = False) 
-    pdf.image('resources/shotvolume_plot.png',143, 87.5,100,112)
+    pdf.image('resources/shotvolume_plot.png',145, 87.5,100,112)
 
 
     pdf.set_y(80.9)
