@@ -12,9 +12,9 @@ from shot_charts_create import ShotCharts
 from get_playerstats import player_attr
 
 
-name = 'Stephen Curry'
-position = 'Point Gaurd'
-team = 'Golden State Warriors'
+name = 'Coby White'
+position = 'Point Guard'
+team = 'Chicago Bulls'
 
 
 
@@ -38,6 +38,9 @@ def create_report(name,position,team):
     player_attr.get_headshot(player_id)
     player_attr.get_logo(team_id)
     stats_df = player_attr.get_stats(player_id)
+
+   
+
     player_attr.all_plots(stats_df)
 
 
@@ -116,7 +119,7 @@ def season_overview(pdf,stats_df):
     pdf.set_y(62)
     pdf.set_x(22)
     pdf.set_font('Arial','B',10)
-    pdf.cell(65,10,str(season)+'        '+str(gp)+'            '+str(mpg)+'         '+str(ppg)+'          '+str(rpg)+'          '+str(ast)+'            '+str(stl)+'             '+str(blk)+'             '+str(tov),align='',fill = False)
+    pdf.cell(65,10,str(season)+'        '+str(gp)+'            '+str(mpg)+'         '+str(ppg)+'            '+str(rpg)+'            '+str(ast)+'           '+str(stl)+'             '+str(blk)+'            '+str(tov),align='',fill = False)
 
 def ratings(pdf,off_mean,off_player,def_mean,def_player):
     pdf.set_y(40)
