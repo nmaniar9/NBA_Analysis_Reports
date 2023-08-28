@@ -12,29 +12,36 @@ from shot_charts_create import ShotCharts
 from get_playerstats import player_attr
 
 
-name = 'Joel Embiid'
-seasons = ['2022-23']
-position = 'Center'
-team = '76ers'
-ShotCharts.volume_chart(name, seasons)
-player_attr.get_headshot('203954')
-player_attr.get_logo('1610612755')
-stats_df = player_attr.get_stats('203954')
-
-player_attr.all_plots(stats_df)
-
-hd = 'resources/headshot.png'
-lg = 'resources/logo.png'
-img = 'resources/shotvolume_plot.png'
-title = ' Player Evaluation: ' + name
-report_name = name +'_22_23season.pdf'
+name = 'Stephen Curry'
+position = 'Point Gaurd'
+team = 'Golden State Warriors'
 
 
 
 
 
 
-def create_report(title,position,team,report_name,img,hd,lg,stats_df):
+
+
+def create_report(name,position,team):
+    player_id = player_attr.get_player_id(name)
+    team_id = player_attr.get_team_id(name)
+    off_mean,off_player = player_attr.off_rating(name)
+    def_mean,def_player = player_attr.def_rating(name)
+    title = ' Player Evaluation: ' + name
+    report_name = name +'_22_23season.pdf'
+    seasons = ['2022-23']
+    hd = 'resources/headshot.png'
+    lg = 'resources/logo.png'
+    img = 'resources/shotvolume_plot.png'
+    ShotCharts.volume_chart(name, seasons)
+    player_attr.get_headshot(player_id)
+    player_attr.get_logo(team_id)
+    stats_df = player_attr.get_stats(player_id)
+    player_attr.all_plots(stats_df)
+
+
+
     pdf = FPDF(orientation = 'L', unit='mm', format='A4')
     pdf.set_margins(0,0,0)
     pdf.add_page()
@@ -46,8 +53,10 @@ def create_report(title,position,team,report_name,img,hd,lg,stats_df):
     logo(pdf,lg)
     season_charts(pdf)
     season_overview(pdf,stats_df)
+    ratings(pdf,off_mean,off_player,def_mean,def_player)
     footer(pdf)
     export(pdf,report_name)
+    
 
     pass
 
@@ -56,11 +65,20 @@ def header(pdf,title,position,team):
     pdf.set_y(10)
     pdf.set_x(35)
 
-    pdf.set_font('Arial','B',25)
-    pdf.set_fill_color(168, 66, 50)
+    pdf.set_font('Arial','B',20)
+    
 
-    pdf.cell(237,20,title + '              ' + position + ' | ' + team,border=0,ln=0,align='',fill = False)
+    pdf.cell(150,20,title,border=0,ln=0,align='',fill = False)
+    pdf.set_y(10)
+    pdf.set_x(170)
+    pdf.set_font('Arial','B',15)
+    pdf.cell(100,20,position + ' | ' + team)
+    pdf.set_font('Arial','B',17)
+    pdf.set_y(22)
+    pdf.set_x(45)
 
+    pdf.cell(237,20,'Regular Season: 2022-23',border=0,ln=0,align='',fill = False)
+    
 
     return(pdf)
 
@@ -99,6 +117,58 @@ def season_overview(pdf,stats_df):
     pdf.set_x(22)
     pdf.set_font('Arial','B',10)
     pdf.cell(65,10,str(season)+'        '+str(gp)+'            '+str(mpg)+'         '+str(ppg)+'          '+str(rpg)+'          '+str(ast)+'            '+str(stl)+'             '+str(blk)+'             '+str(tov),align='',fill = False)
+
+def ratings(pdf,off_mean,off_player,def_mean,def_player):
+    pdf.set_y(40)
+    pdf.set_x(190)
+    pdf.set_font('Arial','B',15)
+
+    off_mean = round(off_mean,2)
+    off_player = round(off_player,2)
+    def_player = round(def_player,2)
+    def_mean = round(def_mean,2)
+
+    if(off_player > off_mean + 3):
+        pdf.set_fill_color(109, 209, 94)
+    elif(off_player < off_mean - 3):
+        pdf.set_fill_color(252, 96, 96)
+    else:
+        pdf.set_fill_color(237, 227, 114)
+
+
+    pdf.cell(65,10,'Offensive Rating',align='',fill = False)
+    pdf.set_y(52)
+    pdf.set_x(190)
+    pdf.set_font('Arial','B',15)
+    pdf.cell(45,21,str(off_player),align='C',border=1,fill = True)
+    pdf.set_y(59)
+    pdf.set_x(190)
+    pdf.set_font('Arial','B',9)
+    pdf.cell(45,23,'Average All Players: '+str(off_mean),align='',border=0,fill = False)
+
+
+    if(def_player > def_mean + 3):
+        pdf.set_fill_color(109, 209, 94)
+    elif(def_player < def_mean - 3):
+        pdf.set_fill_color(252, 96, 96)
+    else:
+        pdf.set_fill_color(237, 227, 114)    
+
+
+    pdf.set_y(40)
+    pdf.set_x(242)
+    pdf.set_font('Arial','B',15)
+    pdf.cell(65,10,'Defensive Rating',align='',fill = False)
+
+    pdf.set_y(52)
+    pdf.set_x(242)
+    pdf.cell(45,21,str(def_player),align='C',border=1,fill = True)
+    pdf.set_y(59)
+    pdf.set_x(242)
+    pdf.set_font('Arial','B',9)
+    pdf.cell(45,23,'Average All Players: '+str(def_mean),align='',border=0,fill = False)
+
+
 
 
 
@@ -210,7 +280,7 @@ def export(pdf,filename):
         
 
 
-create_report(title,position,team,report_name,img,hd,lg,stats_df)
+create_report(name,position,team)
         
 
 

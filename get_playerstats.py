@@ -22,9 +22,40 @@ HEADERS = {'Connection': 'keep-alive',
 
 
 class player_attr:
-    
 
-        
+    def get_player_id(name):
+        df = pd.read_csv(r'/home/neil/Desktop/file.csv')
+        player_df =df[df['PLAYER_NAME'] == name]
+        player_id = player_df.iloc[0]['PLAYER_ID']
+
+        return(player_id)
+    
+    def get_team_id(name):
+        df = pd.read_csv(r'/home/neil/Desktop/file.csv')
+        player_df =df[df['PLAYER_NAME'] == name]
+        team_id = player_df.iloc[0]['TEAM_ID']
+
+        return(team_id)
+
+
+    def off_rating(name):
+        df = pd.read_csv(r'/home/neil/Desktop/file.csv')
+        mean = df['OFF_RATING'].mean()
+
+        player_df = df[df['PLAYER_NAME'] == name]
+        player_mean = player_df['OFF_RATING'].mean()
+
+        return(mean,player_mean)
+    
+    def def_rating(name):
+        df = pd.read_csv(r'/home/neil/Desktop/file.csv')
+        mean = df['DEF_RATING'].mean()
+
+        player_df = df[df['PLAYER_NAME']==name]
+        player_mean = player_df['DEF_RATING'].mean()
+
+        return(mean,player_mean)
+
     def get_headshot(hd):
         headshot = image.Headshot(
                league='NBA',
@@ -45,27 +76,22 @@ class player_attr:
         logo.image.save('/home/neil/NBA_Analysis_Report/NBA_Analysis_Reports/resources/logo.png')
 
 
-    def get_pid(name):
-        pass
-
-    def get_team(pid):
-        pass
-
-    def get_position(pid):
-        pass
-
 
 
     def all_plots(stats_df):
 
-        def add_annotation(ax, x, y, label):
-            ax.annotate(label, xy=(x, y), xytext=(x, y + 2),
-                arrowprops=dict(arrowstyle='->'), fontsize=10, color='purple')
+        def format_year(year):
+             return year[-2:]
+
+        # Apply the formatting function to the 'year' column
+        stats_df['year'] = stats_df['SEASON_ID'].apply(format_year)
+
+
 
 
  
         # Sample data
-        x = stats_df['SEASON_ID']
+        x = stats_df['year']
         y1 = stats_df['GP']
         y2 = stats_df['PTS']
         y3 = stats_df['AST']
